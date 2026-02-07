@@ -1,11 +1,11 @@
 from collections import defaultdict
-from enum import Enum
+from enum import Enum, auto
 
 class Ideology(Enum):
-    LEFT = "left"
-    RIGHT = "right"
-    LIBERTARIAN = "libertarian"
-    AUTHORITARIAN = "authoritarian"
+    LEFT = auto()
+    RIGHT = auto()
+    LIBERTARIAN = auto()
+    AUTHORITARIAN = auto()
 
 class Word:
     def __init__(
