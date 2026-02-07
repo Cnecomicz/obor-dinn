@@ -38,4 +38,4 @@ src-layout = true
 # TODO
 
 [tool.hatch.build.targets.wheel]
-# TODO
+packages = ["src/backend", "src/frontend"]

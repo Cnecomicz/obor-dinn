@@ -1,4 +1,4 @@
-from words import Word
+from backend.words import Word
 
 # A Word can be created with required metadata
 def test_word_creation():
@@ -12,6 +12,6 @@ def test_word_creation():
 
     assert word.id == "testword"
     assert "object" in word.roles
-    assert word.ideology["authority"] == 1
+    assert word.ideology["libertarian-authoritarian"] == 1
     assert "testrhetoric2" in word.rhetoric
     assert "testtopic1" in word.topic
