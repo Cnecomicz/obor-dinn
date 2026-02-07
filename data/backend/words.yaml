@@ -1,0 +1,17 @@
+test_word:
+  roles:
+    - SUBJECT
+    - VERB
+    - OBJECT
+    - OTHER
+  ideology:
+    LEFT: 1
+    # RIGHT: 0
+    LIBERTARIAN: 1
+    # AUTHORITARIAN: 0
+  rhetoric:
+    - testrhetoric1
+    - testrhetoric2
+  topic:
+    - testtopic1
+    - testtopic2

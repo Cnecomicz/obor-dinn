@@ -1,13 +1,7 @@
 from pytest import fixture
 
-from backend.words import Ideology, Word
+from backend.words import Ideology, Role, Word
 
 @fixture
-def word():
-    return Word(
-        id="testword",
-        roles={"subject", "verb", "object", "other"},
-        ideology={Ideology.LEFT: 1, Ideology.LIBERTARIAN: 1},
-        rhetoric={"testrhetoric1", "testrhetoric2"},
-        topic={"testtopic1", "testtopic2"}
-    )
+def test_word():
+    return Word(name="test_word")

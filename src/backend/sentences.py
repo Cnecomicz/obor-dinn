@@ -1,7 +1,9 @@
+from backend.words import Word
+
 class Sentence:
     def __init__(
         self,
-        words: list[str],
+        words: list[Word],
         punctuation: str
     ):
         if 1 <= len(words) <= 3:
