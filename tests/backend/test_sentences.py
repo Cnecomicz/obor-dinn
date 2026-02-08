@@ -4,9 +4,6 @@ from fixtures import test_word
 
 from backend.sentences import Sentence
 
-
-
-
 # A Sentence stores at most three words
 def test_sentence_word_count(test_word):
     sentence1 = Sentence([test_word, test_word, test_word], ".")

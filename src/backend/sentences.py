@@ -5,7 +5,7 @@ class Sentence:
         self,
         words: list[Word],
         punctuation: str
-    ):
+    ) -> None:
         if 1 <= len(words) <= 3:
             self.words = words
             self.punctuation = punctuation

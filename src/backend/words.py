@@ -1,6 +1,7 @@
 from collections import defaultdict
 from enum import Enum, auto
-from yaml import safe_load
+
+from backend.data_store import WORDS_CACHE
 
 class Ideology(Enum):
     LEFT = auto()
@@ -17,25 +18,25 @@ class Role(Enum):
 
 
 class Word:
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self.name = name
-        with open("data/backend/words.yaml", "r") as file:
-            word_data = safe_load(file)[name]
+        word_data = WORDS_CACHE[name]
         self.roles = {
             Role[role] 
             for role in word_data["roles"]
-            }
-        self._ideology = defaultdict(
-            int,
-            {          
-                Ideology[ideology]: value
-                for ideology, value in word_data["ideology"].items()
-            }
-        )
-        self.ideology_vector = (
-            self._ideology[Ideology.RIGHT]-self._ideology[Ideology.LEFT], 
-            self._ideology[Ideology.AUTHORITARIAN]-self._ideology[Ideology.LIBERTARIAN]
-        )
+        }
+        self.ideology = {          
+            Ideology[ideology]: value
+            for ideology, value in word_data["ideology"].items()
+        }
         self.rhetoric = word_data["rhetoric"]
         self.topic = word_data["topic"]
 
+    @property
+    def ideology_vector(self) -> tuple[int, int]:
+        return (
+            self.ideology.get(Ideology.RIGHT, 0)
+            - self.ideology.get(Ideology.LEFT, 0),
+            self.ideology.get(Ideology.AUTHORITARIAN, 0)
+            - self.ideology.get(Ideology.LIBERTARIAN, 0)
+        )
