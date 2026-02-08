@@ -3,6 +3,7 @@ test_word:
     - SUBJECT
     - VERB
     - OBJECT
+    - ADJECTIVE
     - OTHER
   ideology:
     LEFT: 1
@@ -15,3 +16,55 @@ test_word:
   topic:
     - testtopic1
     - testtopic2
+
+left:
+  roles:
+    - SUBJECT
+    - OBJECT
+    - ADJECTIVE
+    - OTHER
+  ideology:
+    LEFT: 1
+  rhetoric:
+    - todo
+  topic:
+    - todo
+
+right:
+  roles:
+    - SUBJECT
+    - OBJECT
+    - ADJECTIVE
+    - OTHER
+  ideology:
+    RIGHT: 1
+  rhetoric:
+    - todo
+  topic:
+    - todo
+
+libertarian:
+  roles:
+    - SUBJECT
+    - OBJECT
+    - ADJECTIVE
+    - OTHER
+  ideology:
+    LIBERTARIAN: 1
+  rhetoric:
+    - todo
+  topic:
+    - todo
+
+authoritarian:
+  roles:
+    - SUBJECT
+    - OBJECT
+    - ADJECTIVE
+    - OTHER
+  ideology:
+    AUTHORITARIAN: 1
+  rhetoric:
+    - todo
+  topic:
+    - todo

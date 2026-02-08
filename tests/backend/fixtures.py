@@ -18,3 +18,9 @@ def test_question(test_word):
 @fixture
 def test_exclamation(test_word):
     return Sentence([test_word, test_word], "!")
+
+@fixture
+def left_authoritarian_libertarian():
+    return Sentence(
+        [Word("left"), Word("authoritarian"), Word("libertarian")], "."
+    )

@@ -14,6 +14,7 @@ class Role(Enum):
     SUBJECT = auto()
     VERB = auto()
     OBJECT = auto()
+    ADJECTIVE = auto()
     OTHER = auto()
 
 
