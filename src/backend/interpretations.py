@@ -2,6 +2,8 @@ from __future__ import annotations
 from enum import Enum, auto
 from typing import TYPE_CHECKING
 
+from backend.words import Role
+
 if TYPE_CHECKING:
     from backend.sentences import Sentence
 
@@ -14,6 +16,15 @@ class SpeechAct:
 class Interpretation:
     def __init__(self, sentence: Sentence):
         self.sentence = sentence
+
+    @property
+    def coherence(self) -> float:
+        sentence_roles = set()
+        for word in self.sentence.words:
+            sentence_roles.update(word.roles)
+        if {Role.SUBJECT, Role.VERB, Role.OBJECT} <= sentence_roles:
+            return 1 
+        return 0
 
     @property
     def ideology_vector(self) -> tuple[int, int]:
