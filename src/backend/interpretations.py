@@ -16,6 +16,16 @@ class Interpretation:
         self.sentence = sentence
 
     @property
+    def ideology_vector(self) -> tuple[int, int]:
+        return tuple(
+            map(
+                sum, 
+                zip(*[word.ideology_vector for word in self.sentence.words])
+            )
+        )
+       
+
+    @property
     def speech_act(self) -> str:
         match self.sentence.punctuation:
             case "?":
