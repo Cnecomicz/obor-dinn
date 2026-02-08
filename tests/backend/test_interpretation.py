@@ -1,5 +1,6 @@
 from fixtures import (
     left_authoritarian_libertarian, 
+    subject_verb,
     subject_verb_object,
     test_exclamation, 
     test_question, 
@@ -28,4 +29,9 @@ def test_ideology_vector_aggregates_word_values(
 # Sentence is evaluated for coherency
 def test_subject_verb_object_is_highly_coherent(subject_verb_object):
     result = Interpretation(subject_verb_object)
+    assert result.coherence > 0.75
+
+# Sentence is evaluated for coherency
+def test_subject_verb_is_highly_coherent(subject_verb):
+    result = Interpretation(subject_verb)
     assert result.coherence > 0.75
