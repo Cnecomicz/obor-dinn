@@ -44,7 +44,7 @@ class Word:
         }
 
     @property
-    def ideology_vector(self) -> tuple[int, int]:
+    def ideology_vector(self) -> tuple[float, float]:
         return (
             self.ideology.get(Ideology.RIGHT, 0)
             - self.ideology.get(Ideology.LEFT, 0),

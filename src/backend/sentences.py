@@ -45,7 +45,7 @@ class Sentence:
         return score
 
     @property
-    def ideology_vector(self) -> tuple[int, int]:
+    def ideology_vector(self) -> tuple[float, float]:
         return tuple(
             map(
                 sum, 
