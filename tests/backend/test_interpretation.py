@@ -35,3 +35,8 @@ def test_subject_verb_object_is_highly_coherent(subject_verb_object):
 def test_subject_verb_is_highly_coherent(subject_verb):
     result = Interpretation(subject_verb)
     assert result.coherence > 0.75
+
+# Sentence is evaluated for coherency
+def test_one_word_with_all_roles_is_not_very_coherent(test_statement):
+    result = Interpretation(test_statement)
+    assert result.coherence < 0.25
