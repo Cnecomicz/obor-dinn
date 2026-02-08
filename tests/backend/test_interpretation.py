@@ -40,3 +40,10 @@ def test_subject_verb_is_highly_coherent(subject_verb):
 def test_one_word_with_all_roles_is_not_very_coherent(test_statement):
     result = Interpretation(test_statement)
     assert result.coherence < 0.25
+
+# Sentence is evaluated to be on topic
+def test_statements_matching_conversation_topic_have_high_relevance(
+    test_statement
+):
+    result = Interpretation(test_statement, Topic.TEST)
+    assert result.relevance > 0.75
