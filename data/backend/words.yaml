@@ -9,33 +9,29 @@ test_word:
     # RIGHT: 0
     LIBERTARIAN: 1
     # AUTHORITARIAN: 0
-  rhetoric:
-    - testrhetoric1
-    - testrhetoric2
-  topic:
-    - testtopic1
-    - testtopic2
+  topics:
+    - TEST
 
 subject:
   roles:
     - SUBJECT
   ideology: 
-  rhetoric:
-  topic:
+  topics:
+    - TEST
 
 verb:
   roles:
     - VERB
   ideology: 
-  rhetoric:
-  topic:
+  topics:
+    - TEST
 
 object:
   roles:
     - OBJECT
   ideology:
-  rhetoric:
-  topic:
+  topics:
+    - TEST
 
 left:
   roles:
@@ -44,9 +40,7 @@ left:
     - ADJECTIVE
   ideology:
     LEFT: 1
-  rhetoric:
-    - todo
-  topic:
+  topics:
     - todo
 
 right:
@@ -56,9 +50,7 @@ right:
     - ADJECTIVE
   ideology:
     RIGHT: 1
-  rhetoric:
-    - todo
-  topic:
+  topics:
     - todo
 
 libertarian:
@@ -68,9 +60,7 @@ libertarian:
     - ADJECTIVE
   ideology:
     LIBERTARIAN: 1
-  rhetoric:
-    - todo
-  topic:
+  topics:
     - todo
 
 authoritarian:
@@ -80,7 +70,5 @@ authoritarian:
     - ADJECTIVE
   ideology:
     AUTHORITARIAN: 1
-  rhetoric:
-    - todo
-  topic:
+  topics:
     - todo

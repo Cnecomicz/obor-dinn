@@ -3,7 +3,7 @@ from enum import Enum, auto
 from itertools import product
 from typing import TYPE_CHECKING
 
-from backend.words import Role
+from backend.words import Role, Topic
 
 if TYPE_CHECKING:
     from backend.sentences import Sentence
@@ -15,8 +15,9 @@ class SpeechAct:
 
 
 class Interpretation:
-    def __init__(self, sentence: Sentence):
+    def __init__(self, sentence: Sentence, topics: set[Topic]):
         self.sentence = sentence
+        self.topics = topics
 
     @property
     def coherence(self) -> float:
@@ -38,6 +39,16 @@ class Interpretation:
                 zip(*[word.ideology_vector for word in self.sentence.words])
             )
         )
+
+    @property
+    def relevance(self) -> float:
+        if not self.topics:
+            return 0
+        matches = 0
+        for word in self.sentence.words:
+            if self.topics & word.topics:
+                matches += 1
+        return matches / len(self.sentence.words)
 
     @property
     def speech_act(self) -> str:

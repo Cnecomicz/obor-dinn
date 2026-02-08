@@ -17,6 +17,11 @@ class Role(Enum):
     ADJECTIVE = auto()
 
 
+class Topic(Enum):
+    TEST = auto()
+    todo = auto()
+
+
 class Word:
     def __init__(self, name: str) -> None:
         self.name = name
@@ -31,8 +36,10 @@ class Word:
                 Ideology[ideology]: value
                 for ideology, value in word_data["ideology"].items()
             }
-        self.rhetoric = word_data["rhetoric"]
-        self.topic = word_data["topic"]
+        self.topics = {
+            Topic[topic]
+            for topic in word_data["topics"]
+        }
 
     @property
     def ideology_vector(self) -> tuple[int, int]:
