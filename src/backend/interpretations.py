@@ -23,7 +23,6 @@ class Interpretation:
                 zip(*[word.ideology_vector for word in self.sentence.words])
             )
         )
-       
 
     @property
     def speech_act(self) -> str:

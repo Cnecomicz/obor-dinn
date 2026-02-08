@@ -24,3 +24,7 @@ def left_authoritarian_libertarian():
     return Sentence(
         [Word("left"), Word("authoritarian"), Word("libertarian")], "."
     )
+
+@fixture
+def subject_verb_object():
+    return Sentence([Word("subject"), Word("verb"), Word("object")], ".")

@@ -15,7 +15,6 @@ class Role(Enum):
     VERB = auto()
     OBJECT = auto()
     ADJECTIVE = auto()
-    OTHER = auto()
 
 
 class Word:
@@ -26,10 +25,12 @@ class Word:
             Role[role] 
             for role in word_data["roles"]
         }
-        self.ideology = {          
-            Ideology[ideology]: value
-            for ideology, value in word_data["ideology"].items()
-        }
+        self.ideology = {}
+        if word_data["ideology"]:
+            self.ideology = {          
+                Ideology[ideology]: value
+                for ideology, value in word_data["ideology"].items()
+            }
         self.rhetoric = word_data["rhetoric"]
         self.topic = word_data["topic"]
 
