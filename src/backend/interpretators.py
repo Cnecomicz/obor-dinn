@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from backend.words import Topic
 
 
-class Interpretation:
+class Interpretator:
     def __init__(self, sentence: Sentence, topics: set[Topic]):
         self.sentence = sentence
         self.topics = topics
@@ -21,3 +21,10 @@ class Interpretation:
                 matches += 1
         return matches / len(self.sentence.words)
         
+# flow:
+# X say a sentence 
+# X score it on metrics like ideology, coherence
+# X it evaluates relevance for the given conversation moment
+# it logs and can remember statements
+# it selects a response as a function of above data
+# repeat
