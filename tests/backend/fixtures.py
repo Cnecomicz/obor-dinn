@@ -36,3 +36,11 @@ def subject_verb():
 @fixture
 def yes():
     return Sentence([Word("yes")], ".")
+
+@fixture
+def left():
+    return Sentence([Word("left")], ".")
+
+@fixture
+def right():
+    return Sentence([Word("right")], ".")
