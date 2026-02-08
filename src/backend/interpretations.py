@@ -21,8 +21,12 @@ class Interpretation:
     @property
     def coherence(self) -> float:
         sentence_roles = [word.roles for word in self.sentence.words]
+        valid_patterns = (
+            {Role.SUBJECT, Role.VERB, Role.OBJECT},
+            {Role.SUBJECT, Role.VERB}
+        )
         for roles in product(*sentence_roles):
-            if set(roles) == {Role.SUBJECT, Role.VERB, Role.OBJECT}:
+            if any(pattern.issubset(set(roles)) for pattern in valid_patterns):
                 return 1 
         return 0
 
