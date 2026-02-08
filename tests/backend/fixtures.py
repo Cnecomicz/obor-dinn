@@ -14,3 +14,7 @@ def test_statement(test_word):
 @fixture
 def test_question(test_word):
     return Sentence([test_word,], "?")
+
+@fixture
+def test_exclamation(test_word):
+    return Sentence([test_word, test_word], "!")

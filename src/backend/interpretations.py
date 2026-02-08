@@ -1,8 +1,14 @@
 from __future__ import annotations
+from enum import Enum, auto
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from backend.sentences import Sentence
+
+class SpeechAct:
+    ASK = auto()
+    ASSERT = auto()
+    EXCLAIM = auto()
 
 
 class Interpretation:
@@ -11,5 +17,11 @@ class Interpretation:
 
     @property
     def speech_act(self) -> str:
-        if self.sentence.punctuation == "?":
-            return "ASK"
+        match self.sentence.punctuation:
+            case "?":
+                return SpeechAct.ASK
+            case ".":
+                return SpeechAct.ASSERT
+            case "!":
+                return SpeechAct.EXCLAIM
+
