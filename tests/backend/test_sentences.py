@@ -7,7 +7,8 @@ from fixtures import (
     test_exclamation, 
     test_question, 
     test_statement, 
-    test_word
+    test_word,
+    yes
 )
 
 from backend.sentences import Sentence, SpeechAct
@@ -48,3 +49,7 @@ def test_subject_verb_is_highly_coherent(subject_verb):
 # Sentence is evaluated for coherency
 def test_one_word_with_all_roles_is_not_very_coherent(test_statement):
     assert test_statement.coherence < 1
+
+# Sentence is evaluated for coherency
+def test_some_words_can_stand_alone(yes):
+    assert yes.coherence == 1

@@ -72,3 +72,10 @@ authoritarian:
     AUTHORITARIAN: 1
   topics:
     - todo
+
+'yes':
+  roles:
+    - ANSWER
+  ideology:
+  topics:
+    - ANSWER

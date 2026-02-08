@@ -15,9 +15,11 @@ class Role(Enum):
     VERB = auto()
     OBJECT = auto()
     ADJECTIVE = auto()
+    ANSWER = auto()
 
 
 class Topic(Enum):
+    ANSWER = auto()
     TEST = auto()
     todo = auto()
 

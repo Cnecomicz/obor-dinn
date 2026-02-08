@@ -32,3 +32,7 @@ def subject_verb_object():
 @fixture
 def subject_verb():
     return Sentence([Word("subject"), Word("verb")], ".")
+
+@fixture
+def yes():
+    return Sentence([Word("yes")], ".")
