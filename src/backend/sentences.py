@@ -31,7 +31,8 @@ class Sentence:
         sentence_roles = [word.roles for word in self.words]
         valid_patterns = (
             {Role.SUBJECT, Role.VERB, Role.OBJECT},
-            {Role.SUBJECT, Role.VERB}
+            {Role.SUBJECT, Role.VERB},
+            {Role.ANSWER}
         )
         score = 0
         for selection in product(*sentence_roles):
