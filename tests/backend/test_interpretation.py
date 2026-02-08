@@ -32,17 +32,17 @@ def test_ideology_vector_aggregates_word_values(
 # Sentence is evaluated for coherency
 def test_subject_verb_object_is_highly_coherent(subject_verb_object):
     result = Interpretation(sentence=subject_verb_object, topics=set())
-    assert result.coherence > 0.75
+    assert result.coherence == 1
 
 # Sentence is evaluated for coherency
 def test_subject_verb_is_highly_coherent(subject_verb):
     result = Interpretation(sentence=subject_verb, topics=set())
-    assert result.coherence > 0.75
+    assert result.coherence == 1
 
 # Sentence is evaluated for coherency
 def test_one_word_with_all_roles_is_not_very_coherent(test_statement):
     result = Interpretation(sentence=test_statement, topics=set())
-    assert result.coherence < 0.25
+    assert result.coherence < 1
 
 # Sentence is evaluated to be on topic
 def test_statements_matching_conversation_topic_have_high_relevance(

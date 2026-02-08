@@ -26,10 +26,15 @@ class Interpretation:
             {Role.SUBJECT, Role.VERB, Role.OBJECT},
             {Role.SUBJECT, Role.VERB}
         )
-        for roles in product(*sentence_roles):
-            if any(pattern.issubset(set(roles)) for pattern in valid_patterns):
-                return 1 
-        return 0
+        score = 0
+        for selection in product(*sentence_roles):
+            structural = max(
+                len(set(selection) & pattern) / len(pattern)
+                for pattern in valid_patterns
+            )
+            dispersion = len(set(selection)) / len(selection)
+            score = max(score, structural * dispersion)
+        return score
 
     @property
     def ideology_vector(self) -> tuple[int, int]:
@@ -59,4 +64,4 @@ class Interpretation:
                 return SpeechAct.ASSERT
             case "!":
                 return SpeechAct.EXCLAIM
-
+        
