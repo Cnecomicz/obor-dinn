@@ -1,4 +1,8 @@
-from backend.words import Word
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from backend.words import Word
 
 class Sentence:
     def __init__(

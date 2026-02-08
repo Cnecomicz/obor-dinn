@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from backend.words import Ideology, Role, Word
+from backend.words import Word
 
 @fixture
 def test_word():
