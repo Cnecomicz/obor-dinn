@@ -1,5 +1,6 @@
 from __future__ import annotations
 from enum import Enum, auto
+from itertools import product
 from typing import TYPE_CHECKING
 
 from backend.words import Role
@@ -19,11 +20,10 @@ class Interpretation:
 
     @property
     def coherence(self) -> float:
-        sentence_roles = set()
-        for word in self.sentence.words:
-            sentence_roles.update(word.roles)
-        if {Role.SUBJECT, Role.VERB, Role.OBJECT} <= sentence_roles:
-            return 1 
+        sentence_roles = [word.roles for word in self.sentence.words]
+        for roles in product(*sentence_roles):
+            if set(roles) == {Role.SUBJECT, Role.VERB, Role.OBJECT}:
+                return 1 
         return 0
 
     @property
