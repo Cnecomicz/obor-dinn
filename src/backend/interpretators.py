@@ -20,11 +20,3 @@ class Interpretator:
             if self.topics & word.topics:
                 matches += 1
         return matches / len(self.sentence.words)
-        
-# flow:
-# X say a sentence 
-# X score it on metrics like ideology, coherence
-# X it evaluates relevance for the given conversation moment
-# it logs and can remember statements
-# it selects a response as a function of above data
-# repeat

@@ -1,7 +1,7 @@
 from collections import defaultdict
 from enum import Enum, auto
 
-from backend.data_store import WORDS_CACHE
+from backend.data_store import DatabaseSingleton
 
 class Ideology(Enum):
     LEFT = auto()
@@ -27,21 +27,50 @@ class Topic(Enum):
 class Word:
     def __init__(self, name: str) -> None:
         self.name = name
-        word_data = WORDS_CACHE[name]
-        self.roles = {
-            Role[role] 
-            for role in word_data["roles"]
-        }
+        self.roles = set()
         self.ideology = {}
-        if word_data["ideology"]:
-            self.ideology = {          
-                Ideology[ideology]: value
-                for ideology, value in word_data["ideology"].items()
-            }
-        self.topics = {
-            Topic[topic]
-            for topic in word_data["topics"]
+        self.topics = set()
+
+        connection = DatabaseSingleton.get_connection()
+        cursor = connection.cursor()
+        cursor.execute(
+            "SELECT WordId FROM Word WHERE Name = ?",
+            (self.name,)
+        )
+        word_id = cursor.fetchone()[0]
+
+        cursor.execute("""
+            SELECT r.Name
+            FROM Role r
+            JOIN WordRole wr ON r.RoleId = wr.RoleId
+            WHERE wr.WordId = ?
+            """, 
+            (word_id,)
+        )
+        self.roles = {Role[row[0]] for row in cursor.fetchall()}
+
+        cursor.execute("""
+            SELECT i.Name, wi.Value
+            FROM Ideology i
+            JOIN WordIdeology wi ON i.IdeologyId = wi.IdeologyId
+            WHERE wi.WordId = ?
+            """, 
+            (word_id,)
+        )
+        self.ideology = {
+            Ideology[name]: value
+            for name, value in cursor.fetchall()
         }
+
+        cursor.execute("""
+            SELECT t.Name
+            FROM Topic t
+            JOIN WordTopic wt ON t.TopicId = wt.TopicId
+            WHERE wt.WordId = ?
+            """, 
+            (word_id,)
+        )
+        self.topics = {Topic[row[0]] for row in cursor.fetchall()}
 
     @property
     def ideology_vector(self) -> tuple[float, float]:
