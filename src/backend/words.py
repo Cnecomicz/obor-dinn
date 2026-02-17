@@ -1,4 +1,3 @@
-from collections import defaultdict
 from enum import Enum, auto
 
 from backend.data_store import DatabaseSingleton
@@ -33,8 +32,9 @@ class Word:
 
         connection = DatabaseSingleton.get_connection()
         cursor = connection.cursor()
-        cursor.execute(
-            "SELECT WordId FROM Word WHERE Name = ?",
+        cursor.execute("""
+            SELECT WordId FROM Word WHERE Name = ?
+            """,
             (self.name,)
         )
         word_id = cursor.fetchone()[0]
