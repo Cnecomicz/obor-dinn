@@ -8,8 +8,40 @@ CREATE TABLE IF NOT EXISTS Npc (
 CREATE TABLE IF NOT EXISTS IncoherentResponse (
     IncoherentResponseId INTEGER PRIMARY KEY AUTOINCREMENT,
     NpcId INTEGER NOT NULL,
+    Response TEXT NOT NULL,
     MinSentiment REAL NOT NULL,
     MaxSentiment REAL NOT NULL,
-    Response TEXT NOT NULL,
     FOREIGN KEY (NpcId) REFERENCES Npc(NpcId) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Response (
+    ResponseId INTEGER PRIMARY KEY AUTOINCREMENT,
+    NpcId INTEGER NOT NULL,
+    Response TEXT NOT NULL,
+    MinRelevance REAL NOT NULL,
+    MinSentiment REAL NOT NULL,
+    MaxSentiment REAL NOT NULL,
+    SentenceMemoryAlignment BOOLEAN NOT NULL, 
+    IdeologyVectorX REAL NOT NULL,
+    IdeologyVectorY REAL NOT NULL,
+    NextTopicId INT NOT NULL,
+    FOREIGN KEY (NpcId) REFERENCES Npc(NpcId) ON DELETE CASCADE,
+    FOREIGN KEY (NextTopicId) REFERENCES Topic(TopicId) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS ResponseTopic (
+    ResponseId INTEGER NOT NULL,
+    TopicId INTEGER NOT NULL,
+    PRIMARY KEY (ResponseId, TopicId),
+    FOREIGN KEY (ResponseId) REFERENCES Response(ResponseId) ON DELETE CASCADE,
+    FOREIGN KEY (TopicId) REFERENCES Topic(TopicId) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS ResponseSpeechAct (
+    ResponseId INTEGER NOT NULL,
+    SpeechActId INTEGER NOT NULL,
+    PRIMARY KEY (ResponseId, SpeechActId),
+    FOREIGN KEY (ResponseId) REFERENCES Response(ResponseId) ON DELETE CASCADE,
+    FOREIGN KEY (SpeechActId) REFERENCES SpeechAct(SpeechActId) ON DELETE CASCADE
+
 );

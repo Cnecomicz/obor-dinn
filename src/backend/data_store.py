@@ -34,8 +34,12 @@ class DatabaseDONOTIMPORT:
         self.close()
         if path.exists(self.db_path):
             remove(self.db_path)
-        self.execute_sql_file("data/backend/generate_schema_words.sql")
-        self.execute_sql_file("data/backend/populate_tables_words.sql")
+        self.execute_sql_file(
+            "data/backend/generate_schema_words_and_sentences.sql"
+        )
+        self.execute_sql_file(
+            "data/backend/populate_tables_words_and_sentences.sql"
+        )
         self.execute_sql_file("data/backend/generate_schema_npcs.sql")
         self.execute_sql_file("data/backend/populate_tables_npcs.sql")
         print("Database created and populated.")

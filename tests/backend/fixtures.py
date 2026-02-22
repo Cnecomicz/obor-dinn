@@ -1,5 +1,6 @@
 from pytest import fixture
 
+from backend.npcs import Npc
 from backend.sentences import Sentence
 from backend.words import Word
 
@@ -18,6 +19,10 @@ def test_question(test_word):
 @fixture
 def test_exclamation(test_word):
     return Sentence([test_word, test_word], "!")
+
+@fixture
+def incoherent_sentence():
+    return Sentence([Word("adjective")], ".")
 
 @fixture
 def left_authoritarian_libertarian():
@@ -44,3 +49,7 @@ def left():
 @fixture
 def right():
     return Sentence([Word("right")], ".")
+
+@fixture
+def test_npc():
+    return Npc(name="test_npc")

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 from backend.words import Role
 
 class SpeechAct(Enum):
+    ACCUSE = auto()
     ASK = auto()
     ASSERT = auto()
     EXCLAIM = auto()

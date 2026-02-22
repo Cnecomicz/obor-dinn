@@ -7,7 +7,8 @@ INSERT OR IGNORE INTO Word (Name) VALUES
 ('right'),
 ('libertarian'),
 ('authoritarian'),
-('yes');
+('yes'),
+('adjective');
 
 INSERT OR IGNORE INTO Role (Name) VALUES
 ('SUBJECT'),
@@ -26,6 +27,12 @@ INSERT OR IGNORE INTO Topic (Name) VALUES
 ('TEST'),
 ('todo'),
 ('ANSWER');
+
+INSERT OR IGNORE INTO SpeechAct (Name) VALUES
+('ACCUSE'),
+('ASK'),
+('ASSERT'),
+('EXCLAIM');
 
 /* Word to Role relationships */
 
@@ -73,6 +80,11 @@ WHERE w.Name='authoritarian' AND r.Name IN ('SUBJECT','OBJECT','ADJECTIVE');
 INSERT OR IGNORE INTO WordRole (WordId, RoleId)
 SELECT w.WordId, r.RoleId FROM Word w, Role r
 WHERE w.Name='yes' AND r.Name='ANSWER';
+
+-- adjective
+INSERT OR IGNORE INTO WordRole (WordId, RoleId)
+SELECT w.WordId, r.RoleId FROM Word w, Role r
+WHERE w.Name='adjective' AND r.Name='ADJECTIVE';
 
 /* Word to Ideology relationships */
 
@@ -174,4 +186,11 @@ SELECT w.WordId, t.TopicId
 FROM Word w, Topic t
 WHERE w.Name='yes'
 AND t.Name='ANSWER';
+
+-- adjective
+INSERT OR IGNORE INTO WordTopic (WordId, TopicId)
+SELECT w.WordId, t.TopicId
+FROM Word w, Topic t
+WHERE w.Name='adjective'
+AND t.Name='TEST';
 
