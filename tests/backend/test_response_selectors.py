@@ -45,9 +45,12 @@ def test_incoherent_response(incoherent_sentence, test_npc):
     response_selector = ResponseSelector(
         npc=test_npc, sentence=incoherent_sentence
     )
-    assert sentence.coherence < npc.min_coherence
-    assert npc.sentiment == 0
+    assert (
+        response_selector.sentence.coherence 
+        < response_selector.npc.min_coherence
+    )
+    assert response_selector.npc.sentiment == 0
     assert (
         response_selector.selected_response 
-        in npc.incoherent_responses[(-10,10)]
+        in response_selector.npc.incoherent_responses[(-10,10)]
     )
