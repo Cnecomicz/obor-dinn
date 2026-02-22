@@ -174,3 +174,4 @@ SELECT w.WordId, t.TopicId
 FROM Word w, Topic t
 WHERE w.Name='yes'
 AND t.Name='ANSWER';
+

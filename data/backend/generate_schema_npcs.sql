@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS Npc (
+    NpcId INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT UNIQUE NOT NULL,
+    MinCoherence REAL NOT NULL,
+    IdeologyConsistency REAL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS IncoherentResponse (
+    IncoherentResponseId INTEGER PRIMARY KEY AUTOINCREMENT,
+    NpcId INTEGER NOT NULL,
+    MinSentiment REAL NOT NULL,
+    MaxSentiment REAL NOT NULL,
+    Response TEXT NOT NULL,
+    FOREIGN KEY (NpcId) REFERENCES Npc(NpcId) ON DELETE CASCADE
+);

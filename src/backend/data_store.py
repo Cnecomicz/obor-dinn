@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class DatabaseDONOTIMPORT:
     def __init__(self) -> None:
         self.connection = None
-        self.db_path = "data/backend/words_and_responses.db"
+        self.db_path = "data/backend/configuration.db"
 
     def close(self) -> None:
         if self.connection is not None:
@@ -34,10 +34,11 @@ class DatabaseDONOTIMPORT:
         self.close()
         if path.exists(self.db_path):
             remove(self.db_path)
-        self.execute_sql_file("data/backend/generate_schema.sql")
-        print("Database created.")
-        self.execute_sql_file("data/backend/populate_tables.sql")
-        print("Database populated.")
+        self.execute_sql_file("data/backend/generate_schema_words.sql")
+        self.execute_sql_file("data/backend/populate_tables_words.sql")
+        self.execute_sql_file("data/backend/generate_schema_npcs.sql")
+        self.execute_sql_file("data/backend/populate_tables_npcs.sql")
+        print("Database created and populated.")
         
 
 DatabaseSingleton = DatabaseDONOTIMPORT()

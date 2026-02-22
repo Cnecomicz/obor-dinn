@@ -12,5 +12,5 @@ def test_npc_attrs():
         (10, float("inf")): ["x", "y", "z"]
     }
     assert npc.ideology_consistency == -0.1
-    assert has_attr(npc, "memory")
+    assert hasattr(npc, "memory")
 
